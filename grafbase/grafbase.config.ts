@@ -27,6 +27,8 @@ const Listing = g
     liveSiteUrl: g.url(),
     category: g.string().search(),
     createdBy: g.relation(() => User),
+    likes: g.int().default(0),
+    tags: g.string().optional().list().length({ max: 5 }),
   })
   .auth((rules) => {
     rules.public().read();
