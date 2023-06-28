@@ -5,7 +5,6 @@ export type FormState = {
   description: string;
   image: string;
   liveSiteUrl: string;
-  githubUrl: string;
   category: string;
 };
 
@@ -28,7 +27,7 @@ export interface UserProfile {
   id: string;
   name: string;
   email: string;
-  description: string | null;
+  bio: string | null;
   avatarUrl: string;
   projects: {
     edges: { node: ListingInterface }[];

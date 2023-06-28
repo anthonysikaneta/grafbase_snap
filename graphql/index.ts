@@ -45,7 +45,7 @@ export const createUserMutation = `
 				name
 				email
 				avatarUrl
-				description
+				bio
 				id
 			}
 		}
@@ -107,7 +107,7 @@ export const getUserQuery = `
       name
       email
       avatarUrl
-      description
+      bio
     }
   }
 `;
@@ -118,7 +118,7 @@ export const getListingsOfUserQuery = `
       id
       name
       email
-      description
+      bio
       avatarUrl
       listings(last: $last) {
         edges {

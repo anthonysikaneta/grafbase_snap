@@ -28,6 +28,8 @@ const comment = g.model("Comment", {
 const user = g.model("User", {
   name: g.string(),
   email: g.email().unique(),
+  avatarUrl: g.url(),
+  bio: g.string().length({ min: 2, max: 1000 }).optional(),
   listings: g.relation(listing).optional().list(),
   comments: g.relation(comment).optional().list(),
 });
