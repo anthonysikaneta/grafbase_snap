@@ -1,39 +1,47 @@
-import { g, auth, config } from "@grafbase/sdk";
+import { g, config, auth } from "@grafbase/sdk";
 
-const listing = g
-  .model("Listing", {
-    title: g.string(),
-    slug: g.string().unique(),
-    content: g.string().optional(),
-    publishedAt: g.datetime().optional(),
-    comments: g
-      .relation(() => comment)
-      .optional()
+// @ts-ignore
+const User = g
+  .model("User", {
+    name: g.string().length({ min: 2, max: 100 }),
+    email: g.string().unique(),
+    avatarUrl: g.url(),
+    bio: g.string().length({ min: 2, max: 1000 }).optional(),
+    githubUrl: g.url().optional(),
+    linkedinUrl: g.url().optional(),
+    projects: g
+      .relation(() => Listing)
       .list()
       .optional(),
-    likes: g.int().default(0),
-    tags: g.string().optional().list().length({ max: 5 }),
-    createdBy: g.relation(() => user).optional(),
-    category: g.string().search(),
   })
-  .search();
+  .auth((rules) => {
+    rules.public().read();
+  });
 
-const comment = g.model("Comment", {
-  listing: g.relation(listing),
-  body: g.string(),
-  likes: g.int().default(0),
-  author: g.relation(() => user).optional(),
-});
+// @ts-ignore
+const Listing = g
+  .model("Listing", {
+    title: g.string().length({ min: 3 }),
+    description: g.string(),
+    image: g.url(),
+    liveSiteUrl: g.url(),
+    category: g.string().search(),
+    createdBy: g.relation(() => User),
+  })
+  .auth((rules) => {
+    rules.public().read();
+    rules.private().create().delete().update();
+  });
 
-const user = g.model("User", {
-  name: g.string(),
-  email: g.email().unique(),
-  avatarUrl: g.url(),
-  bio: g.string().length({ min: 2, max: 1000 }).optional(),
-  listings: g.relation(listing).optional().list(),
-  comments: g.relation(comment).optional().list(),
+const jwt = auth.JWT({
+  issuer: "grafbase",
+  secret: g.env("NEXTAUTH_SECRET"),
 });
 
 export default config({
   schema: g,
+  auth: {
+    providers: [jwt],
+    rules: (rules) => rules.private(),
+  },
 });
