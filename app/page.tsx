@@ -14,7 +14,7 @@ type Props = {
 };
 
 type ListingSearch = {
-  projectSearch: {
+  listingSearch: {
     edges: { node: ListingInterface }[];
     pageInfo: {
       hasPreviousPage: boolean;
@@ -33,7 +33,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   const data = [];
   // (await fetchAllListings(category, endcursor)) as ListingSearch;
 
-  const projectsToDisplay = data?.projectSearch?.edges || [];
+  const projectsToDisplay = data?.listingSearch?.edges || [];
 
   if (projectsToDisplay.length === 0) {
     return (
@@ -66,10 +66,10 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
       </section>
 
       <LoadMore
-        startCursor={data?.projectSearch?.pageInfo?.startCursor}
-        endCursor={data?.projectSearch?.pageInfo?.endCursor}
-        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
-        hasNextPage={data?.projectSearch?.pageInfo.hasNextPage}
+        startCursor={data?.listingSearch?.pageInfo?.startCursor}
+        endCursor={data?.listingSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.listingSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.listingSearch?.pageInfo.hasNextPage}
       />
     </section>
   );
