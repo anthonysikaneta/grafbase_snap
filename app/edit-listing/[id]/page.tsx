@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Modal from "@/components/Modal";
 import ListingForm from "@/components/ListingForm";
 import { getCurrentUser } from "@/lib/session";
-import { getListingDetails } from "@/lib/actions";
+import { getListingDetails } from "@/lib/listing/actions";
 import { ListingInterface } from "@/common.types";
 
 const EditListing = async ({ params: { id } }: { params: { id: string } }) => {

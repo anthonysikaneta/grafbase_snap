@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { deleteListing, fetchToken } from "@/lib/actions";
+import { fetchToken } from "@/lib/common";
+import { deleteListing } from "@/lib/listing/actions";
 
 type Props = {
   listingId: string;

@@ -1,4 +1,4 @@
-import { getUserListings } from "@/lib/actions";
+import { getUserListings } from "@/lib/user/actions";
 import ProfilePage from "@/components/ProfilePage";
 import { UserProfile } from "@/common.types";
 

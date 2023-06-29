@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getCurrentUser } from "@/lib/session";
-import { getListingDetails } from "@/lib/actions";
+import { getListingDetails } from "@/lib/listing/actions";
 import Modal from "@/components/Modal";
 import ListingActions from "@/components/ListingActions";
 import RelatedListings from "@/components/RelatedListings";

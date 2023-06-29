@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getUserListings } from "@/lib/actions";
+import { getUserListings } from "@/lib/user/actions";
 import { ListingInterface, UserProfile } from "@/common.types";
 import Image from "next/image";
 
@@ -12,7 +12,7 @@ type Props = {
 const RelatedListings = async ({ userId, listingId }: Props) => {
   const result = (await getUserListings(userId)) as { user?: UserProfile };
 
-  const filteredListings = result?.user?.projects?.edges?.filter(
+  const filteredListings = result?.user?.listings?.edges?.filter(
     ({ node }: { node: ListingInterface }) => node?.id !== listingId
   );
 

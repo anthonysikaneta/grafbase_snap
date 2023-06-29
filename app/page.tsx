@@ -2,7 +2,7 @@ import { ListingInterface } from "@/common.types";
 import Categories from "@/components/Categories";
 import LoadMore from "@/components/LoadMore";
 import ListingCard from "@/components/ListingCard";
-import { fetchAllListings } from "@/lib/actions";
+import { fetchAllListings } from "@/lib/listing/actions";
 
 type SearchParams = {
   category?: string | null;
