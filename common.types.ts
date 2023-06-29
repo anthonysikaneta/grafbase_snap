@@ -29,7 +29,7 @@ export interface UserProfile {
   email: string;
   bio: string | null;
   avatarUrl: string;
-  projects: {
+  listings: {
     edges: { node: ListingInterface }[];
     pageInfo: {
       hasPreviousPage: boolean;

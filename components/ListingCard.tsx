@@ -27,7 +27,7 @@ const ListingCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
   return (
     <div className="flexCenter flex-col rounded-2xl drop-shadow-card">
       <Link
-        href={`/project/${id}`}
+        href={`/listing/${id}`}
         className="flexCenter group relative w-full h-full"
       >
         <Image

@@ -9,7 +9,7 @@ const User = g
     bio: g.string().length({ min: 2, max: 1000 }).optional(),
     githubUrl: g.url().optional(),
     linkedinUrl: g.url().optional(),
-    projects: g
+    listings: g
       .relation(() => Listing)
       .list()
       .optional(),
